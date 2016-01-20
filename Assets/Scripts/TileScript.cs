@@ -3,13 +3,14 @@ using System.Collections;
 
 public class TileScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	public string letter;
+
+	public void SetLetter(string s){
+		letter = s;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public string GetLetter(){
+		return letter;
 	}
+
 }

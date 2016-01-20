@@ -8,9 +8,11 @@ public class SlotScript : MonoBehaviour {
 
 	public void AddTile(GameObject tile){
 		this.tile = tile;
+		isOccupied = true;
 	}
 
 	public void ClearSlot(){
 		this.tile = null;
+		isOccupied = false;
 	}
 }
