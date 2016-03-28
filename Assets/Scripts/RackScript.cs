@@ -13,6 +13,12 @@ public class RackScript : MonoBehaviour {
 
 	//Worth storing SlotScript references in array?
 
+	//Slots have already been created in the GUI
+	public void Setup(){
+		this.numSlots = slots.Length;
+	}
+
+	//Overloaded, makes slots at run time
 	public void Setup(int numSlots){
 		this.numSlots = numSlots;
 		CreateSlots ();
