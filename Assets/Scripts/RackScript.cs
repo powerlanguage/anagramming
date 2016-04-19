@@ -4,39 +4,27 @@ using System.Collections.Generic;
 
 public class RackScript : MonoBehaviour {
 
-	public int numSlots;
 	public float slotWidth;
 	public float spacerWidth;
 	public GameObject slotPrefab;
-
-	GameObject[] slots;
+	public GameObject[] slots;
 
 	//Worth storing SlotScript references in array?
 
-	//Slots have already been created in the GUI
-	public void Setup(){
-		this.numSlots = slots.Length;
-	}
-
-	//Overloaded, makes slots at run time
-	public void Setup(int numSlots){
-		this.numSlots = numSlots;
-		CreateSlots ();
-	}
-
+	//defunct now we're creating the slots manually before run time
 	public void CreateSlots(){
 
-		slots = new GameObject [numSlots];
+//		slots = new GameObject [numSlots];
 
 		// Create the slots for the rack
-		for (int i = 0; i < numSlots; i++) {
-			float xPos = transform.position.x + (i * slotWidth) + (i * spacerWidth);
-			GameObject newSlot = (GameObject)Instantiate(slotPrefab, new Vector3(xPos, transform.position.y, transform.position.z), transform.rotation);
-			slots[i] = newSlot;
-			//Don't keep world position when setting parent rack
-			newSlot.transform.SetParent (this.transform, false);
-			newSlot.name = newSlot.transform.parent.name + " slot " + i;
-		}
+//		for (int i = 0; i < numSlots; i++) {
+//			float xPos = transform.position.x + (i * slotWidth) + (i * spacerWidth);
+//			GameObject newSlot = (GameObject)Instantiate(slotPrefab, new Vector3(xPos, transform.position.y, transform.position.z), transform.rotation);
+//			slots[i] = newSlot;
+//			//Don't keep world position when setting parent rack
+//			newSlot.transform.SetParent (this.transform, false);
+//			newSlot.name = newSlot.transform.parent.name + " slot " + i;
+//		}
 	}
 
 	private GameObject GetFirstEmptySlot(){
@@ -161,6 +149,10 @@ public class RackScript : MonoBehaviour {
 		foreach (GameObject slot in slots) {
 			slot.GetComponent<SlotScript>().ClearSlot();
 		}
+	}
+
+	public void TileTapped(GameObject tile){
+		Debug.Log (tile + " was tapped");
 	}
 
 }

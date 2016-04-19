@@ -39,6 +39,7 @@ public class TileScript : MonoBehaviour {
 		if (tapDuration < maxTapDuration) {
 			//Tap detected!
 			Debug.Log("Tap Detected");
+			SendMessageUpwards ("TileTapped", this.gameObject);
 		}
 		tapDuration = 0;
 	}
