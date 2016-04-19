@@ -11,7 +11,7 @@ public class TileScript : MonoBehaviour {
 	private bool detectingTap = false;
 
 	void Awake(){
-		this.tag = "tile";
+		
 	}
 
 	void Update(){

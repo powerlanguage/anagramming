@@ -15,6 +15,8 @@ public class GameManagerScript : MonoBehaviour {
 
 	void Start(){
 		rs.Setup (rackSize);
+
+		//Create tiles and add them to Rack
 		for (int i = 0; i < rackSize; i++) {
 			GameObject newTile = (GameObject)Instantiate(tilePrefab, new Vector3(0, 0, 0), transform.rotation);
 			TileScript tileScript = newTile.GetComponent<TileScript>();
