@@ -12,7 +12,16 @@ public class SlotScript : MonoBehaviour {
 		//box collider stuff
 	}
 
+	//Sets the tile as target, with easing
 	public void AddTile(GameObject tile){
+		this.tile = tile;
+		isOccupied = true;
+		tile.GetComponent<TileScript> ().SetTarget (this.gameObject);
+		tile.transform.SetParent (this.transform, false);
+	}
+
+	// Sets the tile without Easing
+	public void AddTileDirectly(GameObject tile){
 		this.tile = tile;
 		isOccupied = true;
 		//Don't keep world position when setting parent slot

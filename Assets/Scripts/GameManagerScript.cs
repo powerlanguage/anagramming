@@ -3,29 +3,29 @@ using System.Collections;
 
 public class GameManagerScript : MonoBehaviour {
 
-	public GameObject rack;
+	public GameObject handRack;
 	public GameObject tilePrefab;
-	private RackScript rs;
+	private RackScript handRackScript;
 
 	void Awake(){
-		rs = rack.GetComponent<RackScript> ();
+		handRackScript = handRack.GetComponent<RackScript> ();
 	}
 
 	void Start(){
 
 		//Create tiles and add them to Rack
-		for (int i = 0; i < rs.slots.Length; i++) {
+		for (int i = 0; i < handRackScript.slots.Length; i++) {
 			GameObject newTile = (GameObject)Instantiate(tilePrefab, new Vector3(0, 0, 0), transform.rotation);
 			TileScript tileScript = newTile.GetComponent<TileScript>();
 			tileScript.SetLetter("j");
 			newTile.name = "tile " + i;
-			rs.AddTileToFirstEmptySlot(newTile);
+			handRackScript.AddTileToFirstEmptySlot(newTile);
 		}
 	}
 
 	void Update(){
 		if (Input.GetKey("space")) {
-			rs.shuffleRack();
+			handRackScript.shuffleRack();
 			Debug.Log("shuffle");
 		}
 	}

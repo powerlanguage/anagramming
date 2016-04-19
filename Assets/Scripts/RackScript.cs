@@ -120,8 +120,7 @@ public class RackScript : MonoBehaviour {
 		}
 		//Add back to the slots
 		for (int i = 0; i < tiles.Length; i++) {
-			SlotScript slotScript = slots[i].GetComponent<SlotScript>();
-			slotScript.AddTile(tiles[i]);
+			AddTileToFirstEmptySlot (tiles [i]);
 		}
 	}
 
