@@ -1,0 +1,12 @@
+Anagramic TODO
+
+Draggable tiles
+Tiles move toward target
+Build static racks
+Build static slots
+Add tile click
+Do tiles know what the racks are?
+
+For a tile to move to a new rack on click, it will need to be able to call the AddTileToFirstEmptySlot on a rack object.  Could use SendMessageUpwards instead
+
+Should just build two static Racks and static slots.  No need to be generated at run time.
