@@ -6,7 +6,7 @@ TagManager:
   tags:
   - slot
   - tile
-  - New Tag
+  - gameManager
   layers:
   - Default
   - TransparentFX

@@ -8,23 +8,15 @@ public class RackScript : MonoBehaviour {
 	public float spacerWidth;
 	public GameObject slotPrefab;
 	public GameObject[] slots;
+	public GameObject otherRack;
+	private RackScript otherRackScript;
+
+
 
 	//Worth storing SlotScript references in array?
 
-	//defunct now we're creating the slots manually before run time
-	public void CreateSlots(){
-
-//		slots = new GameObject [numSlots];
-
-		// Create the slots for the rack
-//		for (int i = 0; i < numSlots; i++) {
-//			float xPos = transform.position.x + (i * slotWidth) + (i * spacerWidth);
-//			GameObject newSlot = (GameObject)Instantiate(slotPrefab, new Vector3(xPos, transform.position.y, transform.position.z), transform.rotation);
-//			slots[i] = newSlot;
-//			//Don't keep world position when setting parent rack
-//			newSlot.transform.SetParent (this.transform, false);
-//			newSlot.name = newSlot.transform.parent.name + " slot " + i;
-//		}
+	void Start(){
+		otherRackScript = otherRack.GetComponent<RackScript> ();
 	}
 
 	private GameObject GetFirstEmptySlot(){
@@ -152,7 +144,8 @@ public class RackScript : MonoBehaviour {
 	}
 
 	public void TileTapped(GameObject tile){
-		Debug.Log (tile + " was tapped");
+		RemoveTile (tile);
+		otherRackScript.AddTileToFirstEmptySlot (tile);
 	}
 
 }
