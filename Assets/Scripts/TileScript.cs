@@ -9,6 +9,9 @@ public class TileScript : MonoBehaviour {
 	public float maxTapDuration = 0.09f;
 	private float tapDuration = 0.0f;
 	private bool detectingTap = false;
+	private Vector3 offset;
+	private Vector3 screenPoint;
+	private TileState tileState = TileState.MOVING;
 
 	void Awake(){
 		
@@ -32,6 +35,17 @@ public class TileScript : MonoBehaviour {
 
 	void OnMouseDown(){
 		detectingTap = true;
+		// Set the offset of the tile, meaning that the tile won't have to be dragged based on it's center
+		// Should the z offset be
+		offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0.0f));
+	}
+
+	void OnMouseDrag(){
+		this.tileState = TileState.DRAGGED;
+		// Get the current position of the mouse, add the offset and then set that to the tile's position
+		Vector3 curMouseScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 0.0f);
+		Vector3 curPosition = Camera.main.ScreenToWorldPoint (curMouseScreenPoint) + offset;
+		transform.position = curPosition;
 	}
 
 	void OnMouseUp(){
@@ -42,6 +56,10 @@ public class TileScript : MonoBehaviour {
 			SendMessageUpwards ("TileTapped", this.gameObject);
 		}
 		tapDuration = 0;
+	}
+
+	void OnTriggerEnter2D(Collider2D other){
+		Debug.Log (this.gameObject.name + " collided with " + other.gameObject.name);
 	}
 	
 	//Get the slot this tile is a child of
@@ -56,11 +74,8 @@ public class TileScript : MonoBehaviour {
 
 }
 
-///* Click on a tile
-// * 	Is it at home?
-// * 	What rack is it in?
-// *  What is the other rack? (what slot is it's rack in?)
-// *  Get the firstemptyslot in that rack
-// *  Clear current slot
-// *  Add tile to new slot
-// *  
+public enum TileState {
+	HOME,
+	MOVING,
+	DRAGGED
+}

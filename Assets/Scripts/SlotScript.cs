@@ -6,10 +6,10 @@ public class SlotScript : MonoBehaviour {
 	public bool isOccupied = false;
 	public GameObject tile = null;
 
-	GameObject rack;
+	// TODO: disable boxCollider when occupied.
 
 	public void Awake(){
-		this.tag = "slot";
+		//box collider stuff
 	}
 
 	public void AddTile(GameObject tile){
