@@ -86,7 +86,6 @@ public class TileScript : MonoBehaviour {
 			Debug.Log ("Tap Detected");
 			SendMessageUpwards ("TileTapped", this.gameObject);
 		} else if (collisions.Count > 0) {
-			Debug.Log (collisions.Count);
 			//Drag collision detected!
 			GameObject closestSlot = null;
 			//Must be a better way to do this?  Maybe with NaN?
@@ -124,7 +123,7 @@ public class TileScript : MonoBehaviour {
 	}
 	
 	//Get the slot this tile is a child of
-	private GameObject GetSlot(){
+	public GameObject GetSlot(){
 		return this.transform.parent.gameObject;
 	}
 

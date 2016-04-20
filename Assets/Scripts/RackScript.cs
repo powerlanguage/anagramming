@@ -150,12 +150,21 @@ public class RackScript : MonoBehaviour {
 	//Not sure if this way of passing params is the best
 	public void TileCollided(GameObject[] collisionParams){
 		GameObject tile = collisionParams [0];
-		GameObject slot = collisionParams [1];
+		GameObject newSlot = collisionParams [1];
+		GameObject currSlot = tile.GetComponent<TileScript> ().GetSlot ();
 
-		if (ContainsSlot (slot)) {
-			AddTileToSlot (tile, slot);
+		//First remove the tile from it's current slot
+		if (ContainsSlot (currSlot)) {
+			RemoveTile (tile);
 		} else {
-			otherRackScript.AddTileToSlot (tile, slot);
+			otherRackScript.RemoveTile (tile);
+		}
+
+		//Then add it to the new slot
+		if (ContainsSlot (newSlot)) {
+			AddTileToSlot (tile, newSlot);
+		} else {
+			otherRackScript.AddTileToSlot (tile, newSlot);
 		}
 	}
 
