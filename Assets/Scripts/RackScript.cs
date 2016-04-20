@@ -21,7 +21,7 @@ public class RackScript : MonoBehaviour {
 
 	private GameObject GetFirstEmptySlot(){
 		foreach (GameObject slot in slots) {
-			if(!slot.GetComponent<SlotScript>().isOccupied){
+			if(!slot.GetComponent<SlotScript>().isSlotOccupied()){
 				return slot;
 			}
 		}
@@ -42,7 +42,7 @@ public class RackScript : MonoBehaviour {
 	public void AddTileToSlot(GameObject tile, GameObject slot){
 		if(ContainsSlot(slot)){
 			SlotScript slotScript = slot.GetComponent<SlotScript>();
-			if(!slotScript.isOccupied){
+			if(!slotScript.isSlotOccupied()){
 				slotScript.AddTile(tile);
 			}
 		}
@@ -53,7 +53,7 @@ public class RackScript : MonoBehaviour {
 	public void RemoveTileFromSlot(GameObject tile, GameObject slot){
 		if(ContainsTile(tile) && ContainsSlot(slot)){
 			SlotScript slotScript = slot.GetComponent<SlotScript>();
-			if(slotScript.tile == tile){
+			if(slotScript.GetTile() == tile){
 				slotScript.ClearSlot();
 			}
 		}
@@ -69,7 +69,7 @@ public class RackScript : MonoBehaviour {
 	//Loop over all slots and to check for tile
 	public bool ContainsTile(GameObject tileToFind){
 		foreach (GameObject slot in slots) {
-			if(slot.GetComponent<SlotScript>().tile == tileToFind){
+			if(slot.GetComponent<SlotScript>().GetTile() == tileToFind){
 				return true;
 			}
 		}
@@ -88,7 +88,7 @@ public class RackScript : MonoBehaviour {
 	
 	public GameObject GetSlotContainingTile(GameObject tile){
 		foreach (GameObject slot in slots) {
-			if(slot.GetComponent<SlotScript>().tile == tile){
+			if(slot.GetComponent<SlotScript>().GetTile() == tile){
 				return slot;
 			}
 		}
@@ -97,7 +97,7 @@ public class RackScript : MonoBehaviour {
 
 	//Returns null if there is no tile in the slot
 	public GameObject GetTileInSlot(GameObject slot){
-		return slot.GetComponent<SlotScript>().tile;
+		return slot.GetComponent<SlotScript>().GetTile();
 	}
 
 	public void shuffleRack(){
@@ -105,8 +105,8 @@ public class RackScript : MonoBehaviour {
 		//Remove tiles from slots and add to a list
 		foreach (GameObject slot in slots) {
 			SlotScript slotScript = slot.GetComponent<SlotScript>();
-			if(slotScript.isOccupied){
-				tilesToShuffle.Add(slotScript.tile);
+			if(slotScript.isSlotOccupied()){
+				tilesToShuffle.Add(slotScript.GetTile());
 				slotScript.ClearSlot();
 			}
 		}
@@ -129,8 +129,8 @@ public class RackScript : MonoBehaviour {
 		string rackString = "";
 		foreach (GameObject slot in slots) {
 			SlotScript slotScript = slot.GetComponent<SlotScript>();
-			if(slotScript.isOccupied){
-				rackString += slotScript.tile.GetComponent<TileScript>().letter;
+			if(slotScript.isSlotOccupied()){
+				rackString += slotScript.GetTile().GetComponent<TileScript>().letter;
 			}
 		}
 		return rackString;

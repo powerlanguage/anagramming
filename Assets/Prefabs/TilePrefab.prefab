@@ -57,6 +57,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   letter: 
   maxTapDuration: 0.09
+  homeRadius: 0.03
+  moveDelta: 0.3
+  tileState: 1
+  target: {fileID: 0}
 --- !u!212 &21281584
 SpriteRenderer:
   m_ObjectHideFlags: 1

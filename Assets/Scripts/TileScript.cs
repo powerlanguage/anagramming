@@ -109,6 +109,8 @@ public class TileScript : MonoBehaviour {
 		//send message upwards?
 		//SendMessageUpwards("SetTileTarget", this.gameObject, target);
 		this.target = target;
+		//Let's move in case we were at home
+		this.tileState = TileState.MOVING;
 	}
 
 }
