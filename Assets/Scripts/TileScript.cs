@@ -89,7 +89,7 @@ public class TileScript : MonoBehaviour {
 			//Drag collision detected!
 			GameObject closestSlot = null;
 			//Must be a better way to do this?  Maybe with NaN?
-			float shortestDist = 9999999f;
+			float shortestDist = float.MaxValue;
 
 			foreach (GameObject slot in collisions){
 				float dist = Vector3.Distance (this.transform.position, slot.transform.position);

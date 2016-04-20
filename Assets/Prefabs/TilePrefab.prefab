@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11431758}
   - 212: {fileID: 21281584}
   - 61: {fileID: 6137608}
+  - 50: {fileID: 5047346}
   m_Layer: 0
   m_Name: TilePrefab
   m_TagString: tile
@@ -30,6 +31,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5047346
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172064}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &6137608
 BoxCollider2D:
   m_ObjectHideFlags: 1

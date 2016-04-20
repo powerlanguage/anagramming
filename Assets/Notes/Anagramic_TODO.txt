@@ -1,22 +1,12 @@
 Anagramic TODO
 
 
-Shuffle doesn't use target
-Click to add doesn't move using target
-Check for collisions
-Set target based on collisions
+Snap tiles to home more tightly
+Reduce tap duration requirement
+Add shuffle button to UI
 
 
-Should setting the target slot act in the same way.  Send message upwards, let the the racks figure out what the tile target is.
-
-Make singleton game manager
-When a tile is clicked, it escalates to game manager, who handles the placement
-
-On tap, goto parent, parent and then sibling rack.  Add to first empty spot.
-
-For a tile to move to a new rack on click, it will need to be able to call the AddTileToFirstEmptySlot on a rack object.  Could use SendMessageUpwards instead
-
-Should just build two static Racks and static slots.  No need to be generated at run time.
+Done
 
 Build static racks
 Build static slots
@@ -24,3 +14,7 @@ Draggable tiles
 Tiles move toward target
 Add tile click
 Do tiles know what the racks are?
+Check for collisions
+Set target based on collisions
+Got to clear the slots when we're moving things around
+Boxcolliders don't re-enable on drag
