@@ -1,10 +1,15 @@
 Anagramic TODO
 
 
-Snap tiles to home more tightly
-Reduce tap duration requirement
-Add shuffle button to UI
 
+Add shuffle button to UI
+Menu
+Streak manager
+Word list
+Add letters to tile
+Persistant data manager
+Audio
+Position slots correctly
 
 Done
 
@@ -18,3 +23,5 @@ Check for collisions
 Set target based on collisions
 Got to clear the slots when we're moving things around
 Boxcolliders don't re-enable on drag
+Snap tiles to home more tightly
+Reduce tap duration requirement

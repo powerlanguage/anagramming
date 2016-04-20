@@ -74,8 +74,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letter: 
-  maxTapDuration: 0.09
-  homeRadius: 0.03
+  maxTapDuration: 0.1
+  homeRadius: 0.01
   moveDelta: 0.3
   tileState: 1
   target: {fileID: 0}
