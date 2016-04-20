@@ -3,11 +3,24 @@ using System.Collections;
 
 public class SlotScript : MonoBehaviour {
 
-	private bool isOccupied = false;
+	public bool isOccupied = false;
 	private GameObject tile = null;
+	private BoxCollider2D bc;
 
 	public void Awake(){
-		//box collider stuff
+		bc = this.GetComponent<BoxCollider2D> ();
+	}
+
+	void Update(){
+
+		//Disable box Collider if slot is occupied
+		//Stops collisions from happening
+		if (isOccupied) {
+			bc.enabled = false;
+		} else {
+			bc.enabled = true;
+		}
+			
 	}
 
 	//Sets the tile as target, with easing
@@ -17,10 +30,13 @@ public class SlotScript : MonoBehaviour {
 		tile.GetComponent<TileScript> ().SetTarget (this.gameObject);
 
 		//This is required for moving with set target to work correctly
+		//Don't fully understand how the relative coords work
 		tile.transform.SetParent (this.transform);
+		Debug.Log("Setting " + tile.name + " to target " + this.transform.parent.name + " " + this.name);
 	}
 
 	// Sets the tile without Easing
+	// Could be Set tile?
 	public void AddTileDirectly(GameObject tile){
 		this.tile = tile;
 		isOccupied = true;
@@ -34,7 +50,7 @@ public class SlotScript : MonoBehaviour {
 		isOccupied = false;
 	}
 
-	public bool isSlotOccupied(){
+	public bool IsSlotOccupied(){
 		return isOccupied;
 	}
 

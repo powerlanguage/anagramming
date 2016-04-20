@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TileScript : MonoBehaviour {
 
@@ -16,6 +17,8 @@ public class TileScript : MonoBehaviour {
 	public float moveDelta;
 	public TileState tileState = TileState.MOVING;
 	public GameObject target;
+	//Collisions
+	private HashSet<GameObject> collisions = new HashSet<GameObject>();
 
 	void Awake(){
 		
@@ -27,18 +30,14 @@ public class TileScript : MonoBehaviour {
 		case TileState.MOVING:
 			//Ease towards home
 
-
 			Vector3 currPos = this.transform.position;
 			Vector3 targetPos = target.transform.position;
-			Debug.Log (target.name);
 
 			this.transform.position = Vector3.Lerp (currPos, targetPos, moveDelta);
 
 			//Check if Tile is now at home
 			float homeDistance = Vector3.Distance(this.transform.position, targetPos);
-			Debug.Log(homeDistance);
 			if (homeDistance < homeRadius) {
-				Debug.Log ("Tile is home");
 				this.tileState = TileState.HOME;
 			}
 
@@ -84,15 +83,44 @@ public class TileScript : MonoBehaviour {
 		detectingTap = false;
 		if (tapDuration < maxTapDuration) {
 			//Tap detected!
-			Debug.Log("Tap Detected");
+			Debug.Log ("Tap Detected");
 			SendMessageUpwards ("TileTapped", this.gameObject);
+		} else if (collisions.Count > 0) {
+			Debug.Log (collisions.Count);
+			//Drag collision detected!
+			GameObject closestSlot = null;
+			//Must be a better way to do this?  Maybe with NaN?
+			float shortestDist = 9999999f;
+
+			foreach (GameObject slot in collisions){
+				float dist = Vector3.Distance (this.transform.position, slot.transform.position);
+				if (dist < shortestDist) {
+					Debug.Log (slot.name);
+					shortestDist = dist;
+					closestSlot = slot;
+				}
+			}
+
+			GameObject[] collisionParams = {this.gameObject, closestSlot};
+			SendMessageUpwards ("TileCollided", collisionParams);
+			collisions.Clear ();
 		}
+			
 		tapDuration = 0;
 		this.tileState = TileState.MOVING;
 	}
+		
+	//When a tile overlaps a slot, we add it to the collisions list.
+	//When a tile no longer overlaps a slot, we remove it from the collisions list.
+	//When the mouse is released, we check the collisions list and set the target to the closest collision.
 
 	void OnTriggerEnter2D(Collider2D other){
 		Debug.Log (this.gameObject.name + " collided with " + other.gameObject.name);
+		collisions.Add (other.gameObject);
+	}
+
+	void OnTriggerExit2D(Collider2D other){
+		collisions.Remove (other.gameObject);
 	}
 	
 	//Get the slot this tile is a child of

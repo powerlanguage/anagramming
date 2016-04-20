@@ -21,7 +21,7 @@ public class RackScript : MonoBehaviour {
 
 	private GameObject GetFirstEmptySlot(){
 		foreach (GameObject slot in slots) {
-			if(!slot.GetComponent<SlotScript>().isSlotOccupied()){
+			if(!slot.GetComponent<SlotScript>().IsSlotOccupied()){
 				return slot;
 			}
 		}
@@ -42,7 +42,7 @@ public class RackScript : MonoBehaviour {
 	public void AddTileToSlot(GameObject tile, GameObject slot){
 		if(ContainsSlot(slot)){
 			SlotScript slotScript = slot.GetComponent<SlotScript>();
-			if(!slotScript.isSlotOccupied()){
+			if(!slotScript.IsSlotOccupied()){
 				slotScript.AddTile(tile);
 			}
 		}
@@ -105,7 +105,7 @@ public class RackScript : MonoBehaviour {
 		//Remove tiles from slots and add to a list
 		foreach (GameObject slot in slots) {
 			SlotScript slotScript = slot.GetComponent<SlotScript>();
-			if(slotScript.isSlotOccupied()){
+			if(slotScript.IsSlotOccupied()){
 				tilesToShuffle.Add(slotScript.GetTile());
 				slotScript.ClearSlot();
 			}
@@ -129,7 +129,7 @@ public class RackScript : MonoBehaviour {
 		string rackString = "";
 		foreach (GameObject slot in slots) {
 			SlotScript slotScript = slot.GetComponent<SlotScript>();
-			if(slotScript.isSlotOccupied()){
+			if(slotScript.IsSlotOccupied()){
 				rackString += slotScript.GetTile().GetComponent<TileScript>().letter;
 			}
 		}
@@ -145,6 +145,18 @@ public class RackScript : MonoBehaviour {
 	public void TileTapped(GameObject tile){
 		RemoveTile (tile);
 		otherRackScript.AddTileToFirstEmptySlot (tile);
+	}
+
+	//Not sure if this way of passing params is the best
+	public void TileCollided(GameObject[] collisionParams){
+		GameObject tile = collisionParams [0];
+		GameObject slot = collisionParams [1];
+
+		if (ContainsSlot (slot)) {
+			AddTileToSlot (tile, slot);
+		} else {
+			otherRackScript.AddTileToSlot (tile, slot);
+		}
 	}
 
 }
