@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class TileScript : MonoBehaviour {
 
 	public string letter;
-
+	public GameObject letterMesh;
 	//Dtecting taps vs drags
 	public float maxTapDuration = 0.09f;
 	private float tapDuration = 0.0f;
@@ -19,6 +19,7 @@ public class TileScript : MonoBehaviour {
 	public GameObject target;
 	//Collisions
 	private HashSet<GameObject> collisions = new HashSet<GameObject>();
+
 
 	void Awake(){
 		
@@ -57,6 +58,7 @@ public class TileScript : MonoBehaviour {
 	}
 
 	public void SetLetter(string s){
+		letterMesh.GetComponent<TextMesh> ().text = s.ToUpper();
 		letter = s;
 	}
 

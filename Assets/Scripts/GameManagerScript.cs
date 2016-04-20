@@ -3,9 +3,11 @@ using System.Collections;
 
 public class GameManagerScript : MonoBehaviour {
 
-	public GameObject handRack;
 	public GameObject tilePrefab;
+	public GameObject handRack;
 	private RackScript handRackScript;
+	public GameObject playRack;
+	private RackScript playRackScript;
 
 	void Awake(){
 		handRackScript = handRack.GetComponent<RackScript> ();
