@@ -13,7 +13,7 @@ GameObject:
   - 61: {fileID: 6169496}
   - 50: {fileID: 5059256}
   m_Layer: 0
-  m_Name: TilePrefab 1
+  m_Name: TilePrefab
   m_TagString: tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letter: 
-  letterMesh: {fileID: 0}
+  letterMesh: {fileID: 181184}
   maxTapDuration: 0.1
   homeRadius: 0.01
   moveDelta: 0.3
