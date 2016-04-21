@@ -15,12 +15,14 @@ public class GameManagerScript : MonoBehaviour {
 
 	void Start(){
 
+		string sampleWord = "Disgust";
+
 		//Create tiles and add them to Rack
-		for (int i = 0; i < handRackScript.slots.Length; i++) {
+		foreach(char c in sampleWord) {
 			GameObject newTile = (GameObject)Instantiate(tilePrefab, new Vector3(0, 0, 0), transform.rotation);
 			TileScript tileScript = newTile.GetComponent<TileScript>();
-			tileScript.SetLetter("j");
-			newTile.name = "tile " + i;
+			tileScript.SetLetter(c.ToString());
+			newTile.name = c.ToString ();
 			handRackScript.AddTileToFirstEmptySlot(newTile);
 		}
 	}

@@ -100,6 +100,10 @@ public class RackScript : MonoBehaviour {
 		return slot.GetComponent<SlotScript>().GetTile();
 	}
 
+	//TODO:
+	//Compare shuffled list to starting list
+	//Keep shuffling until they are different
+	//handle case of 1 rack shuffle
 	public void shuffleRack(){
 		List<GameObject> tilesToShuffle = new List<GameObject> ();
 		//Remove tiles from slots and add to a list
