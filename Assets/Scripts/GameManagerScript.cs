@@ -15,7 +15,7 @@ public class GameManagerScript : MonoBehaviour {
 
 	void Start(){
 
-		string sampleWord = "Disguct";
+		string sampleWord = "wisguct";
 
 		//Create tiles and add them to Rack
 		foreach(char c in sampleWord) {

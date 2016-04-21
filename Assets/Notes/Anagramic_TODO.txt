@@ -13,7 +13,9 @@ Solve button?
     What if just a count of completion on menu
 Change board size so tiles fit better
 Tile shuffle should run again if in the same order.
-Dragged tiles go above other tiles
+Dragged tiles be on layer other tiles
+What happens when we run out of words
+Celebration Screen
 
 Done
 
