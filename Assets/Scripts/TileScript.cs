@@ -85,7 +85,7 @@ public class TileScript : MonoBehaviour {
 		detectingTap = false;
 		if (tapDuration < maxTapDuration) {
 			//Tap detected!
-			Debug.Log ("Tap Detected");
+			Debug.Log ("Tap Detected " + GetRack ().name + " " + this.gameObject.name);
 			SendMessageUpwards ("TileTapped", this.gameObject);
 		} else if (collisions.Count > 0) {
 			//Drag collision detected!
@@ -111,13 +111,15 @@ public class TileScript : MonoBehaviour {
 		this.tileState = TileState.MOVING;
 	}
 		
-	//When a tile overlaps a slot, we add it to the collisions list.
+	//When a tile overlaps a slot, and tile is being dragged, we add it to the collisions list.
 	//When a tile no longer overlaps a slot, we remove it from the collisions list.
 	//When the mouse is released, we check the collisions list and set the target to the closest collision.
 
 	void OnTriggerEnter2D(Collider2D other){
-		Debug.Log (this.gameObject.name + " collided with " + other.gameObject.name);
-		collisions.Add (other.gameObject);
+		if (this.tileState == TileState.DRAGGED) {
+			Debug.Log (GetRack ().name + " " + this.gameObject.name + " collided with " + other.gameObject.transform.parent.name + " " + other.gameObject.name);
+			collisions.Add (other.gameObject);
+		}
 	}
 
 	void OnTriggerExit2D(Collider2D other){

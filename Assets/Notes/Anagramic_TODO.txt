@@ -6,10 +6,14 @@ Add shuffle button to UI
 Menu
 Streak manager
 Word list
-Add letters to tile
 Persistant data manager
 Audio
 Position slots correctly
+Solve button?
+    What if just a count of completion on menu
+Change board size so tiles fit better
+Tile shuffle should run again if in the same order.
+Dragged tiles go above other tiles
 
 Done
 
@@ -25,3 +29,4 @@ Got to clear the slots when we're moving things around
 Boxcolliders don't re-enable on drag
 Snap tiles to home more tightly
 Reduce tap duration requirement
+Add letters to tile
