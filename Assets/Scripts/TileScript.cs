@@ -31,8 +31,9 @@ public class TileScript : MonoBehaviour {
 		case TileState.MOVING:
 			//Ease towards home
 
-			Vector3 currPos = this.transform.position;
-			Vector3 targetPos = target.transform.position;
+			//Don't try and ease on the Z axis - note we use this.z as the target
+			Vector3 currPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+			Vector3 targetPos = new Vector3(target.transform.position.x, target.transform.position.y, this.transform.position.z);
 
 			this.transform.position = Vector3.Lerp (currPos, targetPos, moveDelta);
 

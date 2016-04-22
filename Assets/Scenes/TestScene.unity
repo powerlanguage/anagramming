@@ -438,6 +438,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 753088106}
   - 114: {fileID: 753088105}
+  - 114: {fileID: 753088107}
+  - 114: {fileID: 753088108}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -458,7 +460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 179058, guid: dbe100e16547e4be2a6a8e83446b426c, type: 2}
   handRack: {fileID: 2559969}
-  playRack: {fileID: 0}
+  playRack: {fileID: 1681723721}
 --- !u!4 &753088106
 Transform:
   m_ObjectHideFlags: 0
@@ -471,6 +473,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &753088107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 753088104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1befc40a21d1a458089efadfea3967f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rawTextFile: {fileID: 4900000, guid: dca0688a9ad4e4fc7a855026d06cb9bf, type: 3}
+  currentWord: 
+  shuffledWord: 
+--- !u!114 &753088108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 753088104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae97925aacf494c40a01baf985a22b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &857463841 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 162220, guid: ca8d474a5bb9f4b399f409ba9e2364fe, type: 2}

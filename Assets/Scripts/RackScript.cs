@@ -140,8 +140,11 @@ public class RackScript : MonoBehaviour {
 		return rackString;
 	}
 
+	//Delete all the tiles and clear all the slots
 	public void ClearRack(){
 		foreach (GameObject slot in slots) {
+			GameObject tile = GetTileInSlot (slot);
+			Destroy (tile);
 			slot.GetComponent<SlotScript>().ClearSlot();
 		}
 	}
