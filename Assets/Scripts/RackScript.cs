@@ -100,6 +100,19 @@ public class RackScript : MonoBehaviour {
 		return slot.GetComponent<SlotScript>().GetTile();
 	}
 
+	//Returns all the tiles in the current rack
+	public GameObject[] GetTiles(){
+		List<GameObject> tiles = new List<GameObject> ();
+		foreach (GameObject slot in slots) {
+			GameObject tile = slot.GetComponent<SlotScript> ().GetTile ();
+			if (tile != null) {
+				tiles.Add (tile);
+			}
+		}
+		return tiles.ToArray ();
+
+	}
+
 	//TODO:
 	//Compare shuffled list to starting list
 	//Keep shuffling until they are different
@@ -149,6 +162,15 @@ public class RackScript : MonoBehaviour {
 		}
 	}
 
+	//Recall all tiles from other rack to this rack
+	public void RecallTilesToRack(){
+		GameObject[] tiles = otherRackScript.GetTiles ();
+		foreach (GameObject tile in tiles) {
+			otherRackScript.RemoveTile (tile);
+			AddTileToFirstEmptySlot (tile);
+		}
+	}
+
 	public void TileTapped(GameObject tile){
 		RemoveTile (tile);
 		otherRackScript.AddTileToFirstEmptySlot (tile);
@@ -174,5 +196,4 @@ public class RackScript : MonoBehaviour {
 			otherRackScript.AddTileToSlot (tile, newSlot);
 		}
 	}
-
 }

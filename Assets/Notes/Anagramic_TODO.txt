@@ -1,14 +1,14 @@
 Anagramic TODO
 
 
+Why are we storing words in a hastable
+    key     | value
+    wording | wording
 
-Add shuffle button to UI
+Maybe directly add the first tiles so it doesn't look visually weird
 Menu
 Streak manager
-Word list
-Persistant data manager
 Audio
-Position slots correctly
 Solve button?
     What if just a count of completion on menu
 Change board size so tiles fit better
@@ -32,3 +32,7 @@ Boxcolliders don't re-enable on drag
 Snap tiles to home more tightly
 Reduce tap duration requirement
 Add letters to tile
+Position slots correctly
+Persistant data manager
+Word list
+Add shuffle button to UI

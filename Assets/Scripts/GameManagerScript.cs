@@ -58,8 +58,7 @@ public class GameManagerScript : MonoBehaviour {
 
 	void Update(){
 		if (Input.GetKey("space")) {
-			handRackScript.shuffleRack();
-			Debug.Log("shuffle");
+			
 		}
 
 		//Could do this every time we add a tile?
