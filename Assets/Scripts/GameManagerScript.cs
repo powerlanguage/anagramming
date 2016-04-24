@@ -8,6 +8,7 @@ public class GameManagerScript : MonoBehaviour {
 	private RackScript handRackScript;
 	public GameObject playRack;
 	private RackScript playRackScript;
+	public GameObject progessDisplay;
 	//Managers
 	private WordManagerScript wordManager;
 	private PersistentDataManagerScript dataManager;
@@ -54,6 +55,8 @@ public class GameManagerScript : MonoBehaviour {
 			handRackScript.AddTileToFirstEmptySlot(newTile);
 		}
 
+		//Display Progress
+		progessDisplay.GetComponentInChildren<TextMesh>().text = GetNumSolvedWords() + "/" + GetNumUnsolvedWords();
 	}
 
 	void Update(){
@@ -69,15 +72,37 @@ public class GameManagerScript : MonoBehaviour {
 			wordManager.MarkWordAsSolved(currentWord);
 			wordManager.SetCurrentWord (wordManager.GetUnsolvedWord ());
 			currentWord = wordManager.GetCurrentWord ();
-			//Save Progress
-			Hashtable progress = new Hashtable();
-			progress.Add ("solvedWords", wordManager.solvedWords);
-			progress.Add ("unsolvedWords", wordManager.unsolvedWords);
-			progress.Add ("currentWord", currentWord);
-			dataManager.Save (progress);
+			SaveProgress ();
 			//Setup the new game
 			SetupGame();
 		}
+	}
+
+	//Gets a new word without marking the current one as complete
+	public void SkipWord(){
+		wordManager.SetCurrentWord (wordManager.GetUnsolvedWord ());
+		currentWord = wordManager.GetCurrentWord ();
+		SaveProgress ();
+		SetupGame ();
+
+	}
+
+	private void SaveProgress(){
+		//Save Progress
+		Hashtable progress = new Hashtable();
+		progress.Add ("solvedWords", wordManager.solvedWords);
+		progress.Add ("unsolvedWords", wordManager.unsolvedWords);
+		progress.Add ("currentWord", currentWord);
+		dataManager.Save (progress);
+
+	}
+
+	public int GetNumSolvedWords(){
+		return wordManager.GetNumSolvedWords ();
+	}
+
+	public int GetNumUnsolvedWords(){
+		return wordManager.GetNumUnsolvedWords ();
 	}
 
 }

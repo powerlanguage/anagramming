@@ -13,7 +13,7 @@ public class RecallButtonScript : MonoBehaviour {
 
 	void OnMouseUp(){
 		handRackScript.RecallTilesToRack();
-		Debug.Log("shuffle");
+		Debug.Log("recall");
 	}
 
 }

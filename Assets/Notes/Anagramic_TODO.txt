@@ -1,21 +1,20 @@
 Anagramic TODO
 
 
-Why are we storing words in a hastable
-    key     | value
-    wording | wording
 
 Maybe directly add the first tiles so it doesn't look visually weird
 Menu
-Streak manager
 Audio
 Solve button?
     What if just a count of completion on menu
-Change board size so tiles fit better
+
 Tile shuffle should run again if in the same order.
 Dragged tiles be on layer other tiles
 What happens when we run out of words
 Celebration Screen
+layers, sorting layers?
+
+
 
 Done
 
@@ -36,3 +35,4 @@ Position slots correctly
 Persistant data manager
 Word list
 Add shuffle button to UI
+Skip button?
