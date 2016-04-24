@@ -162,6 +162,26 @@ public class RackScript : MonoBehaviour {
 		}
 	}
 
+	public int GetNumOccupiedSlots(){
+		int occupiedSlots = 0;
+		foreach (GameObject slot in slots) {
+			if (slot.GetComponent<SlotScript> ().IsSlotOccupied ()) {
+				occupiedSlots++;
+			}
+		}
+		return occupiedSlots;
+	}
+
+	public int GetNumUnoccupiedSlots(){
+		int unoccupiedSlots = 0;
+		foreach (GameObject slot in slots) {
+			if (slot.GetComponent<SlotScript> ().IsSlotOccupied () == false) {
+				unoccupiedSlots++;
+			}
+		}
+		return unoccupiedSlots;
+	}
+
 	//Recall all tiles from other rack to this rack
 	public void RecallTilesToRack(){
 		GameObject[] tiles = otherRackScript.GetTiles ();
