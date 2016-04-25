@@ -14,6 +14,15 @@ What happens when we run out of words
 Celebration Screen
 layers, sorting layers?
 
+0 board
+0 UI
+	-1 icons/text
+-5 tiles
+	-1 letter mesh
+-10 tiles dragged
+-15 modal 
+-20 camera
+
 
 
 Done

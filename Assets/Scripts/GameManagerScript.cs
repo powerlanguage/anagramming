@@ -47,7 +47,7 @@ public class GameManagerScript : MonoBehaviour {
 
 		//Create tiles and add them to Rack
 		foreach(char c in sampleWord) {
-			GameObject newTile = (GameObject)Instantiate(tilePrefab, new Vector3(0, 0, -1f), transform.rotation);
+			GameObject newTile = (GameObject)Instantiate(tilePrefab, new Vector3(0, 0, tilePrefab.transform.position.z), transform.rotation);
 			TileScript tileScript = newTile.GetComponent<TileScript>();
 			tileScript.SetLetter(c.ToString());
 			newTile.name = c.ToString ();
@@ -56,7 +56,7 @@ public class GameManagerScript : MonoBehaviour {
 		}
 
 		//Display Progress
-		progessDisplay.GetComponentInChildren<TextMesh>().text = GetNumSolvedWords() + "/" + GetNumUnsolvedWords();
+		progessDisplay.GetComponentInChildren<TextMesh>().text = GetNumSolvedWords() + "/" + (GetNumSolvedWords() + GetNumUnsolvedWords());
 	}
 
 	void Update(){

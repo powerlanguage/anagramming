@@ -19,7 +19,9 @@ public class TileScript : MonoBehaviour {
 	public GameObject target;
 	//Collisions
 	private HashSet<GameObject> collisions = new HashSet<GameObject>();
-
+	//
+	public float staticZ;
+	public float movingZ;
 
 	void Awake(){
 		
@@ -48,6 +50,10 @@ public class TileScript : MonoBehaviour {
 		case TileState.DRAGGED:
 			break;
 		case TileState.HOME:
+			//Reset z-index if the tile was being dragged
+			if (this.transform.position.z < staticZ) {
+				this.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y, staticZ);
+			}
 			break;
 		
 		}
@@ -77,7 +83,8 @@ public class TileScript : MonoBehaviour {
 	void OnMouseDrag(){
 		this.tileState = TileState.DRAGGED;
 		// Get the current position of the mouse, add the offset and then set that to the tile's position
-		Vector3 curMouseScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 0.0f);
+		// Using movingZ to bring the dragged tile infront of everything else
+		Vector3 curMouseScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, movingZ);
 		Vector3 curPosition = Camera.main.ScreenToWorldPoint (curMouseScreenPoint) + offset;
 		this.transform.position = curPosition;
 	}
