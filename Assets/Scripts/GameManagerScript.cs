@@ -14,8 +14,10 @@ public class GameManagerScript : MonoBehaviour {
 	private PersistentDataManagerScript dataManager;
 	private Hashtable data;
 	public string currentWord;
-	//Skip Modal
-	public GameObject skipModal;
+	//Game Over Modal
+	public GameObject gameCompleteModal;
+	//Debug
+	public bool debug;
 
 	void Awake(){
 		handRackScript = handRack.GetComponent<RackScript> ();
@@ -28,7 +30,7 @@ public class GameManagerScript : MonoBehaviour {
 		data = dataManager.Load();
 
 		// No data, first time the app has run or local storage cleared
-		if (data == null) {
+		if (data == null || debug) {
 			wordManager.Setup ();
 		} else {
 			// Data found. Set up app using stored data.
@@ -45,10 +47,10 @@ public class GameManagerScript : MonoBehaviour {
 		playRackScript.ClearRack ();
 		handRackScript.ClearRack ();
 
-		string sampleWord = wordManager.ShuffleWord (currentWord);
+		string shuffledWord = wordManager.ShuffleWord (currentWord);
 
 		//Create tiles and add them to Rack
-		foreach(char c in sampleWord) {
+		foreach(char c in shuffledWord) {
 			GameObject newTile = (GameObject)Instantiate(tilePrefab, new Vector3(0, 0, tilePrefab.transform.position.z), transform.rotation);
 			TileScript tileScript = newTile.GetComponent<TileScript>();
 			tileScript.SetLetter(c.ToString());
@@ -62,8 +64,8 @@ public class GameManagerScript : MonoBehaviour {
 	}
 
 	void Update(){
-		if (Input.GetKey("space")) {
-			
+		if (Input.GetKey("c")) {
+			dataManager.Clear ();
 		}
 
 		//Could do this every time we add a tile?
@@ -72,11 +74,19 @@ public class GameManagerScript : MonoBehaviour {
 			//Game is won
 			//Get new word. Should maybe just leave it all in the word manager?
 			wordManager.MarkWordAsSolved(currentWord);
-			wordManager.SetCurrentWord (wordManager.GetUnsolvedWord ());
-			currentWord = wordManager.GetCurrentWord ();
-			SaveProgress ();
-			//Setup the new game
-			SetupGame();
+
+
+			if (GetNumUnsolvedWords() == 0) {
+				//If there are no more unsolved words, game is complete
+				gameCompleteModal.SetActive(true);
+			} else {
+				//Fetch a new word, save progress and setup the racks
+				wordManager.SetCurrentWord (wordManager.GetUnsolvedWord ());
+				currentWord = wordManager.GetCurrentWord ();
+				SaveProgress ();
+				//Setup the new game
+				SetupGame ();
+			}
 		}
 	}
 

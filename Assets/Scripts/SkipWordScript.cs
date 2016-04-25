@@ -5,6 +5,7 @@ public class SkipWordScript : MonoBehaviour {
 
 	public GameObject gameManager;
 	private GameManagerScript gameManagerScript;
+	public GameObject modal;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +14,7 @@ public class SkipWordScript : MonoBehaviour {
 
 	void OnMouseUp(){
 		gameManagerScript.SkipWord();
-		gameManagerScript.skipModal.SetActive (false);
+		modal.SetActive (false);
 		Debug.Log("skip");
 	}
 }

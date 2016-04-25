@@ -5,14 +5,7 @@ Anagramic TODO
 Maybe directly add the first tiles so it doesn't look visually weird
 Menu
 Audio
-Solve button?
-    What if just a count of completion on menu
 
-Tile shuffle should run again if in the same order.
-Dragged tiles be on layer other tiles
-What happens when we run out of words
-Celebration Screen
-layers, sorting layers?
 
 0 board
 0 UI
@@ -45,3 +38,6 @@ Persistant data manager
 Word list
 Add shuffle button to UI
 Skip button?
+Dragged tiles be on layer other tiles
+What happens when we run out of words
+Celebration Screen
