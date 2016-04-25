@@ -14,6 +14,8 @@ public class GameManagerScript : MonoBehaviour {
 	private PersistentDataManagerScript dataManager;
 	private Hashtable data;
 	public string currentWord;
+	//Skip Modal
+	public GameObject skipModal;
 
 	void Awake(){
 		handRackScript = handRack.GetComponent<RackScript> ();
