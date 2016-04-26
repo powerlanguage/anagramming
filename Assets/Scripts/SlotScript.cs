@@ -15,11 +15,11 @@ public class SlotScript : MonoBehaviour {
 
 		//Disable box Collider if slot is occupied
 		//Stops collisions from happening
-		if (isOccupied) {
-			bc.enabled = false;
-		} else {
-			bc.enabled = true;
-		}
+//		if (isOccupied) {
+//			bc.enabled = false;
+//		} else {
+//			bc.enabled = true;
+//		}
 			
 	}
 
@@ -56,5 +56,10 @@ public class SlotScript : MonoBehaviour {
 
 	public GameObject GetTile(){
 		return tile;
+	}
+
+	//Get the rack this slot is a child of
+	public GameObject GetRack(){
+		return this.transform.parent.gameObject;
 	}
 }

@@ -104,7 +104,6 @@ public class TileScript : MonoBehaviour {
 			foreach (GameObject slot in collisions){
 				float dist = Vector3.Distance (this.transform.position, slot.transform.position);
 				if (dist < shortestDist) {
-					Debug.Log (slot.name);
 					shortestDist = dist;
 					closestSlot = slot;
 				}

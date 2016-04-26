@@ -206,22 +206,32 @@ public class RackScript : MonoBehaviour {
 
 	//Not sure if this way of passing params is the best
 	public void TileCollided(GameObject[] collisionParams){
-		GameObject tile = collisionParams [0];
-		GameObject newSlot = collisionParams [1];
-		GameObject currSlot = tile.GetComponent<TileScript> ().GetSlot ();
+		GameObject currentTile = collisionParams [0];
+		GameObject targetSlot = collisionParams [1];
+		GameObject currentSlot = currentTile.GetComponent<TileScript> ().GetSlot ();
 
-		//First remove the tile from it's current slot
-		if (ContainsSlot (currSlot)) {
-			RemoveTile (tile);
-		} else {
-			otherRackScript.RemoveTile (tile);
-		}
+		SlotScript currentSlotScript = currentSlot.GetComponent<SlotScript> ();
+		SlotScript targetSlotScript = targetSlot.GetComponent<SlotScript> ();
 
-		//Then add it to the new slot
-		if (ContainsSlot (newSlot)) {
-			AddTileToSlot (tile, newSlot);
+		//Fetch the rack scripts each slot belongs to, so we can add/remove appropriately
+		RackScript currentRackScript = currentSlotScript.GetRack ().GetComponent<RackScript> ();
+		RackScript targetRackScript = targetSlotScript.GetRack ().GetComponent<RackScript> ();
+
+		if (targetSlotScript.isOccupied) {
+			//target slot is occupied, so swap tiles
+			GameObject tileInTargetSlot = targetSlotScript.GetTile();
+
+			currentRackScript.RemoveTile(currentTile);
+			targetRackScript.RemoveTile(tileInTargetSlot);
+			currentRackScript.AddTileToSlot (tileInTargetSlot, currentSlot);
+			targetRackScript.AddTileToSlot (currentTile, targetSlot);
+
+			Debug.Log ("Target slot is occupied!");
 		} else {
-			otherRackScript.AddTileToSlot (tile, newSlot);
+			//target slot is empty, just remove tile from current slot, and add to new slot
+			currentRackScript.RemoveTile (currentTile);
+			targetRackScript.AddTileToSlot (currentTile, targetSlot);
+
 		}
 	}
 }
