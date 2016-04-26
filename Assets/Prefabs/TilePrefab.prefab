@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   letter: 
   letterMesh: {fileID: 181184}
-  maxTapDuration: 0.2
+  maxTapDuration: 0.12
   homeRadius: 0.01
   moveDelta: 0.3
   tileState: 1
