@@ -136,8 +136,16 @@ public class RackScript : MonoBehaviour {
 			tiles[randomIndex] = temp;
 		}
 		//Add back to the slots
-		for (int i = 0; i < tiles.Length; i++) {
-			AddTileToFirstEmptySlot (tiles [i]);
+
+		int tilesToAddIndex = 0;
+
+		//Only add tiles slots that are empty in the play rack 
+		for (int i = 0; i < slots.Length; i++) {
+			Debug.Log(otherRackScript.slots [i].GetComponent<SlotScript> ().isOccupied);
+			if (otherRackScript.slots [i].GetComponent<SlotScript> ().isOccupied == false) {
+				AddTileToSlot (tiles [tilesToAddIndex], slots [i]);
+				tilesToAddIndex++;
+			}
 		}
 	}
 
