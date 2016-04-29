@@ -22,6 +22,8 @@ public class TileScript : MonoBehaviour {
 	//
 	public float staticZ;
 	public float movingZ;
+	//
+	public float scaleOnTap;
 
 	void Awake(){
 		
@@ -43,17 +45,25 @@ public class TileScript : MonoBehaviour {
 			float homeDistance = Vector3.Distance(this.transform.position, targetPos);
 			if (homeDistance < homeRadius) {
 				this.tileState = TileState.HOME;
+				//Play audio
 			}
+			//Set Scale
+			this.transform.localScale = new Vector3 (1.08f, 1.08f, 1.0f);
 
 
 			break;
 		case TileState.DRAGGED:
+			//Set Scale
+			this.transform.localScale = new Vector3 (1.08f, 1.08f, 1.0f);
+
 			break;
 		case TileState.HOME:
 			//Reset z-index if the tile was being dragged
 			if (this.transform.position.z < staticZ) {
 				this.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y, staticZ);
 			}
+			//Set scale
+			this.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f);
 			break;
 		
 		}
