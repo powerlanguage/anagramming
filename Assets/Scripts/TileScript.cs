@@ -16,6 +16,7 @@ public class TileScript : MonoBehaviour {
 	public float homeRadius;
 	public float moveDelta;
 	public TileState tileState = TileState.MOVING;
+	private bool isHome = false;
 	public GameObject target;
 	//Collisions
 	private HashSet<GameObject> collisions = new HashSet<GameObject>();
@@ -24,9 +25,11 @@ public class TileScript : MonoBehaviour {
 	public float movingZ;
 	//
 	public float scaleOnTap;
+	//
+	private AudioSource audioSource;
 
 	void Awake(){
-		
+		this.audioSource = this.GetComponent<AudioSource> ();
 	}
 
 	void Update(){
@@ -48,14 +51,14 @@ public class TileScript : MonoBehaviour {
 				//Play audio
 			}
 			//Set Scale
-			this.transform.localScale = new Vector3 (1.08f, 1.08f, 1.0f);
-
+			this.transform.localScale = new Vector3 (scaleOnTap, scaleOnTap, 1.0f);
+			isHome = false;
 
 			break;
 		case TileState.DRAGGED:
 			//Set Scale
-			this.transform.localScale = new Vector3 (1.08f, 1.08f, 1.0f);
-
+			this.transform.localScale = new Vector3 (scaleOnTap, scaleOnTap, 1.0f);
+			isHome = false;
 			break;
 		case TileState.HOME:
 			//Reset z-index if the tile was being dragged
@@ -64,6 +67,13 @@ public class TileScript : MonoBehaviour {
 			}
 			//Set scale
 			this.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f);
+			//Play audio
+
+			if (!isHome) {
+				audioSource.Play ();
+				isHome = true;
+			}
+
 			break;
 		
 		}
