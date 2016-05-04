@@ -12,6 +12,7 @@ public class GameManagerScript : MonoBehaviour {
 	//Managers
 	private WordManagerScript wordManager;
 	private PersistentDataManagerScript dataManager;
+	private PreferenceManagerScript preferenceManager;
 	private Hashtable data;
 	public string currentWord;
 	//Game Over Modal
@@ -25,6 +26,7 @@ public class GameManagerScript : MonoBehaviour {
 		//
 		wordManager = this.GetComponent<WordManagerScript> ();
 		dataManager = this.GetComponent<PersistentDataManagerScript> ();
+		preferenceManager = this.GetComponent<PreferenceManagerScript> ();
 
 		//Attempt to load stored data
 		data = dataManager.Load();
@@ -35,6 +37,7 @@ public class GameManagerScript : MonoBehaviour {
 		} else {
 			// Data found. Set up app using stored data.
 			wordManager.Setup(data);
+			preferenceManager.Setup (data);
 		}
 
 		//Store current word in local variable for easy access
@@ -102,12 +105,14 @@ public class GameManagerScript : MonoBehaviour {
 
 	}
 
-	private void SaveProgress(){
+	public void SaveProgress(){
 		//Save Progress
 		Hashtable progress = new Hashtable();
 		progress.Add ("solvedWords", wordManager.solvedWords);
 		progress.Add ("unsolvedWords", wordManager.unsolvedWords);
 		progress.Add ("currentWord", currentWord);
+		progress.Add ("musicVolume", preferenceManager.musicVolume);
+		progress.Add ("sfxVolume", preferenceManager.sfxVolume);
 		dataManager.Save (progress);
 
 	}
