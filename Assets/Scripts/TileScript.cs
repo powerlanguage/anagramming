@@ -51,7 +51,7 @@ public class TileScript : MonoBehaviour {
 				//Play audio
 			}
 			//Set Scale
-			this.transform.localScale = new Vector3 (scaleOnTap, scaleOnTap, 1.0f);
+			//this.transform.localScale = new Vector3 (scaleOnTap, scaleOnTap, 1.0f);
 			isHome = false;
 
 			break;
@@ -65,14 +65,14 @@ public class TileScript : MonoBehaviour {
 			if (this.transform.position.z < staticZ) {
 				this.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y, staticZ);
 			}
-			//Set scale
+			//Set scale to
 			this.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f);
 			//Play audio
 
-			if (!isHome) {
-				audioSource.Play ();
-				isHome = true;
-			}
+//			if (!isHome) {
+//				audioSource.Play ();
+//				isHome = true;
+//			}
 
 			break;
 		

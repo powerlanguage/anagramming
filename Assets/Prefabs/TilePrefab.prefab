@@ -234,7 +234,7 @@ MonoBehaviour:
   target: {fileID: 0}
   staticZ: -5
   movingZ: -5
-  scaleOnTap: 1.02
+  scaleOnTap: 1.1
 --- !u!212 &21255354
 SpriteRenderer:
   m_ObjectHideFlags: 1
