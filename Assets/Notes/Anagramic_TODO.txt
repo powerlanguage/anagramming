@@ -1,6 +1,35 @@
 Anagramic TODO
 
+Animate on win
+SFX on win
+SFX for shuffle
+SFX for return
+Tiles shouldn't resize on shuffle
+Audio levels
 
+
+Set slider values as global audio levels
+comment what you've done
+persistent audio levels
+Add audio preferences to persistent data
+SFX slider
+All SFX come from one source?
+
+
+SFX:
+Shuffle
+Recall
+Skip
+UI noise
+Start / Tiles populating
+Win
+Swap
+
+Add Tile
+Shuffle
+Recall
+
+should be enum?
 
 Maybe directly add the first tiles so it doesn't look visually weird
 Menu

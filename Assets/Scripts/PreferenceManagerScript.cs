@@ -16,7 +16,7 @@ public class PreferenceManagerScript : MonoBehaviour {
 	private GameManagerScript gameManager;
 
 	void Awake(){
-		gameManager = this.GetComponent<GameManagerScript> ();
+		gameManager = this.gameObject.GetComponent<GameManagerScript> ();
 	}
 
 	public void Setup(Hashtable data){
@@ -27,32 +27,34 @@ public class PreferenceManagerScript : MonoBehaviour {
 		//Set the controlling slider value to match
 
 		if (data.ContainsKey("musicVolume")){
-			float vol = (float)data ["musicVolume"];
-			SetMusicVolume(vol);
-			musicSlider.value = vol;
+			//Setting the slider value calls the Setters below
+			//Using the 'onsliderchanged' function in the UI
+			musicSlider.value = (float)data ["musicVolume"];
 		}
 
 		if (data.ContainsKey("sfxVolume")){
-			float vol = (float)data ["sfxVolume"];
-			SetSFXVolume(vol);
-			sfxSlider.value = vol;
+			//Setting the slider value calls the Setters below
+			//Using the 'onsliderchanged' function in the UI
+			sfxSlider.value = (float)data ["sfxVolume"];
 		}
-
-		music.volume = musicVolume;
-		sfx.volume = sfxVolume;
 	}
 
 	public void SetMusicVolume(float vol){
 		musicVolume = vol;
 		music.volume = musicVolume;
 
-		gameManager.SaveProgress ();
+		//As this is done at start up, we need to check if the gamemanager has been awoken
+		if (gameManager != null) {
+			gameManager.SaveProgress ();
+		}
 	}
 
+	//As this is done at start up, we need to check if the gamemanager has been awoken
 	public void SetSFXVolume(float vol){
 		sfxVolume = vol;
 		sfx.volume = sfxVolume;
-
-		gameManager.SaveProgress ();
+		if (gameManager != null) {
+			gameManager.SaveProgress ();
+		}
 	}
 }
