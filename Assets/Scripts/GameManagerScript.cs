@@ -39,6 +39,9 @@ public class GameManagerScript : MonoBehaviour {
 
 		//Store current word in local variable for easy access
 		currentWord = wordManager.GetCurrentWord ();
+	}
+
+	void Start(){
 		SetupGame ();
 	}
 

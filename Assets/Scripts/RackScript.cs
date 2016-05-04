@@ -10,13 +10,16 @@ public class RackScript : MonoBehaviour {
 	public GameObject[] slots;
 	public GameObject otherRack;
 	private RackScript otherRackScript;
+	public AudioSource sfx;
+	private SFXControllerScript sfxScript;
 
 
 
 	//Worth storing SlotScript references in array?
 
-	void Start(){
+	void Awake(){
 		otherRackScript = otherRack.GetComponent<RackScript> ();
+		sfxScript = sfx.GetComponent<SFXControllerScript> ();
 	}
 
 	private GameObject GetFirstEmptySlot(){
@@ -34,6 +37,7 @@ public class RackScript : MonoBehaviour {
 		GameObject emptySlot = GetFirstEmptySlot ();
 		if (emptySlot != null) {
 			emptySlot.GetComponent<SlotScript>().AddTile(tile);
+			sfxScript.playClip (1);
 		}
 	}
 
@@ -44,6 +48,7 @@ public class RackScript : MonoBehaviour {
 			SlotScript slotScript = slot.GetComponent<SlotScript>();
 			if(!slotScript.IsSlotOccupied()){
 				slotScript.AddTile(tile);
+				sfxScript.playClip (1);
 			}
 		}
 	}
@@ -118,7 +123,10 @@ public class RackScript : MonoBehaviour {
 	//Keep shuffling until they are different
 	//handle case of 1 rack shuffle
 	public void shuffleRack(){
+
 		List<GameObject> tilesToShuffle = new List<GameObject> ();
+
+		sfxScript.playClip (0);
 		//Remove tiles from slots and add to a list
 		foreach (GameObject slot in slots) {
 			SlotScript slotScript = slot.GetComponent<SlotScript>();
@@ -147,6 +155,8 @@ public class RackScript : MonoBehaviour {
 				tilesToAddIndex++;
 			}
 		}
+
+
 	}
 
 	//Loop over slots.  For those that have a tile, add its letter to the string
@@ -192,11 +202,16 @@ public class RackScript : MonoBehaviour {
 
 	//Recall all tiles from other rack to this rack
 	public void RecallTilesToRack(){
+
+		sfxScript.playClip (2);
+
 		GameObject[] tiles = otherRackScript.GetTiles ();
 		foreach (GameObject tile in tiles) {
 			otherRackScript.RemoveTile (tile);
 			AddTileToFirstEmptySlot (tile);
 		}
+
+
 	}
 
 	public void TileTapped(GameObject tile){

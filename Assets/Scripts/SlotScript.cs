@@ -6,11 +6,10 @@ public class SlotScript : MonoBehaviour {
 	public bool isOccupied = false;
 	private GameObject tile = null;
 	private BoxCollider2D bc;
-	private AudioSource source;
 
 	public void Awake(){
 		bc = this.GetComponent<BoxCollider2D> ();
-		source = this.GetComponent<AudioSource> ();
+		//source = this.GetComponent<AudioSource> ();
 	}
 
 	void Update(){
@@ -36,7 +35,6 @@ public class SlotScript : MonoBehaviour {
 		//Don't fully understand how the relative coords work
 		tile.transform.SetParent (this.transform);
 		Debug.Log("Setting " + tile.name + " to target " + this.transform.parent.name + " " + this.name);
-		source.Play ();
 	}
 
 	// Sets the tile without Easing
